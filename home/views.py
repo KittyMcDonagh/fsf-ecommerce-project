@@ -5,5 +5,5 @@ def index(request):
     
     """ A view that renders the index page """
     
-    return render(request, "index.html")
+    return render(request, "home.html")
     
