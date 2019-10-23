@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %}
+
+<!-- This javascript is required by Stripe -->
+{% block head_js %}
+
+<script type="text/javascript" src="https://js.stripe.com/v2"></script>
+
+<!-- This is setting the Strip publishable key. We can then use it elsewhere
+     on the page -->
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = "{{ publishable }}";
+    //]]>
+</script>
+
+<!-- This script file is within our js dir under static -->
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock head_js %} {% block content %}
+
+<div class="container-fluid">
+    <div class="row no-gutters">
+
+        {% for item in cart_items %}
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card">
+                <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
+                <div class="caption">
+                    <h3>{{ item.product.name }}</h3>
+                    <p class="product-description">{{ item.product.description }}</p>
+                    <p>{{ item.quantity}}</p>
+                    <p>{{ item.product.price }}</p>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row no-gutters">
+        <div class="col-12 col-sm-6 col-md-4">
+            <p>Total</p>
+            <p><span><i class="fas fa-euro-sign"></i>{{ total }}</span></p>
+        </div>
+    </div>
+
+
+    <form role="form" method="POST" id="payment-form" action="{% url 'checkout'  %}">
+
+        <div class="row no-gutters">
+            <div class="col-12">
+                <legend>Payment Details</legend>
+                <hr>
+                <div id="credit-card-errors" style="display:none">
+                    <div class="alert-message block-message error" id="stripe-error-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-12 col-md-6 pl-3 pr-3">
+                <div class="form-group">
+                    {{ order_form|as_bootstrap }}
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 pl-3 pr-3">
+                <div class="form-group">
+                    {{ payment_form|as_bootstrap }}
+                </div>
+            </div>
+        </div>
+
+        {% csrf_token %}
+
+        <div class="row no-gutters">
+            <div class="col-12 pl-3">
+                <div class="form-group">
+                    <input class="btn btn-primary" id="submit-payment-btn" name="commit" type="submit" value="Submit Payment">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
