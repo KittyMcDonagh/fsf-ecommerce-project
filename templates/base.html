@@ -11,22 +11,19 @@
     <title>Ecommerce</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- The video used a local fontawesome, but it didnt work either locally or from S3, so I'm removing it and using the Fontawesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
- 
-    <link rel="stylesheet" href="{% static 'font-awesome/css/fontawesome.min.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" />
-
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
     <!-- The js we're writing in checkout.html (head_js) will injected into base.html 
          here when checkout is clicked -->
-    {% block head_js %}
-    {% endblock %}
-    
+    {% block head_js %} {% endblock %}
+
 </head>
 
 <body>
@@ -35,12 +32,12 @@
 
         <ul class="nav navbar-nav ">
             {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user pr-1"></i>Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out-alt pr-1"></i>Logout</a></li>
             {% else %}
 
-            <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-user-plus pr-1"></i>Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in-alt pr-1"></i>Log In</a></li>
             {% endif %}
 
             <li style="padding-top:10px; padding-left:1080px">
@@ -59,13 +56,11 @@
     <h1>{% block page_heading %}{% endblock %}</h1>
 
     {% if messages %}
-        <div class="alert alert-success">
-            <div class="messages">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
+    <div class="alert alert-success">
+        <div class="messages">
+            {% for message in messages %} {{ message }} {% endfor %}
         </div>
+    </div>
     {% endif %}
 
 
@@ -85,8 +80,6 @@
             <p>Made by Code Institute bootcampers</p>
         </div>
     </footer>
-
-
 
 </body>
 

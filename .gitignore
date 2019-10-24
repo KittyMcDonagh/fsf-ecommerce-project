@@ -3,3 +3,7 @@
 .c9/
 __pycache__/
 env.py
+*.jpg
+*.png
+static/
+media/

@@ -22,6 +22,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -186,7 +187,7 @@ STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 
-# All files under 'media' are static files
+# All files under 'media' are media files
 MEDIAFILES_LOCATION = 'media'
 
 # This tells s3 where to store the media files (s3/media)
@@ -199,9 +200,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"), 
     )
 
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
+
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+# MEDIA_URL = '/media/'
 
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
