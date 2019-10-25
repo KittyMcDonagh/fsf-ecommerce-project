@@ -1,0 +1,1 @@
+web: gunicorn fsf-ecommerce.wsgi:application
