@@ -1,1 +1,1 @@
-web: gunicorn fsf-ecommerce.wsgi:application
+web: gunicorn fsf_ecommerce.wsgi:application
