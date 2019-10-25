@@ -40,7 +40,7 @@ DEBUG = True
 ALLOWED_HOSTS = [os.environ.get('AWSC9_HOST', 'kitty-fsf-ecommerce.herokuapp.com')]
 
 # Application definition
-# This is how makemigrations knows which apps to look for for models
+# This is how makemigrations knows which apps to look for, for models
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -201,9 +201,8 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-# MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-MEDIA_URL = '/media/'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+# MEDIA_URL = '/media/'
 
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
