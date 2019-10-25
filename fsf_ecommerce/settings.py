@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Import env.py to allow access to the environment variables
-import env
+# import env
 
 # Import dj_database_url which we installed with "pip3 install dj-database-url"
 import dj_database_url
