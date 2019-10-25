@@ -37,9 +37,7 @@ DEBUG = True
 # in .bashrc and use it in settings.py instead of C9_HOSTNAME - until further 
 # direction is given
 
-ALLOWED_HOSTS = [os.environ.get('AWSC9_HOST')]
-
-
+ALLOWED_HOSTS = [os.environ.get('AWSC9_HOST', 'kitty-fsf-ecommerce.herokuapp.com')]
 
 # Application definition
 # This is how makemigrations knows which apps to look for for models
